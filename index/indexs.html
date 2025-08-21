@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FLAMES Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Game Wrapper -->
+  <div id="game-app">
+
+    <!-- Start Screen -->
+    <section id="start-screen" class="screen active">
+      <h1>🔥 Welcome to FLAMES 🔥</h1>
+      <p>Find out your relationship with your crush!</p>
+      <button id="start-btn">Start Game</button>
+    </section>
+
+    <!-- Input Screen -->
+    <section id="input-screen" class="screen hidden">
+      <h2>Enter Names</h2>
+      <p>Type your name and your crush’s name</p>
+      
+      <div class="form-area">
+        <label for="player-name">Your First Name</label>
+        <input type="text" id="player-name" placeholder="e.g. ahmed" required>
+
+        <label for="crush-name">Crush’s First Name</label>
+        <input type="text" id="crush-name" placeholder="e.g. Meena" required>
+      </div>
+
+      <div class="buttons">
+        <button id="play-btn">Play 🔮</button>
+        <button id="back-btn">⬅ Back</button>
+      </div>
+    </section>
+
+    <!-- Result Screen -->
+    <section id="result-screen" class="screen hidden">
+      <h2>✨ Your FLAMES Result ✨</h2>
+      <div id="result-display">
+        <!-- JS will fill the result here -->
+        <p class="waiting">Calculating your destiny...</p>
+      </div>
+
+      <div class="buttons">
+        <button id="retry-btn">Play Again 🔁</button>
+
+        <!-- Video button wrapped so we can toggle visibility -->
+        <div id="video-btn-wrapper" class="hidden">
+          <button id="next-file-btn">🎥 Make My Story Video</button>
+          <button id="next-file-btn1">🎥 Make My Story Video</button>
+          <button id="next-file-btn2">🎥 Make My Story Video</button>
+          <button id="next-file-btn3">🎥 Make My Story Video</button>
+          <button id="next-file-btn4">🎥 Make My Story Video</button>
+          <button id="next-file-btn5">🎥 Make My Story Video</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLAMES Legend (static help section) -->
+    <section id="legend-screen" class="screen">
+      <h3>What does FLAMES mean?</h3>
+      <ul>
+        <li>F = Friends 🤝</li>
+        <li>L = Love ❤️</li>
+        <li>A = Affection 💞</li>
+        <li>M = Marriage 💍</li>
+        <li>E = Enemy 😈</li>
+        <li>S = Sister 👧</li>
+      </ul>
+    </section>
+
+  </div>
+    <script src="app.js"></script>
+</body>
+</html>

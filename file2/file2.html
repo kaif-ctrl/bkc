@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status Video</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    iframe {
+      width: 60%;
+      height: 340px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.7);
+      margin-bottom: 20px;
+      border: none;
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+    }
+    a, button {
+      background: limegreen;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.3s;
+      border: none;
+    }
+    a:hover, button:hover {
+      background: green;
+      transform: scale(1.05);
+    }
+    #shareBtn {
+      display: none;
+      background: dodgerblue;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- YouTube Video Embed -->
+  <iframe id="ytVideo" src="https://www.youtube.com/embed/A66TYFdz8YA?autoplay=0&loop=1" allowfullscreen></iframe>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <!-- Download Button -->
+    <a id="downloadBtn" href="INTRO.mp4" download="MyStatusVideo.mp4">⬇️ Download</a>
+    <!-- Share Button (hidden first) -->
+    <button id="shareBtn">📤 Share</button>
+  </div>
+
+  <script>
+    const downloadBtn = document.getElementById("downloadBtn");
+    const shareBtn = document.getElementById("shareBtn");
+
+    downloadBtn.addEventListener("click", () => {
+      setTimeout(() => {
+        if (navigator.share && navigator.canShare) {
+          shareBtn.style.display = "inline-block"; 
+        } else {
+          alert("⚠️ This share option only works on Mobile.\nOn Desktop, please use the downloaded video and attach manually.");
+        }
+      }, 1000);
+    });
+
+    shareBtn.addEventListener("click", () => {
+      if (navigator.share && navigator.canShare) {
+        fetch("INTRO.mp4")
+          .then(res => res.blob())
+          .then(fileBlob => {
+            const file = new File([fileBlob], "MyStatusVideo.mp4", { type: "video/mp4" });
+            navigator.share({
+              files: [file],
+              title: "Status Video"
+            }).catch(err => console.log("Share cancelled:", err));
+          });
+      } else {
+        alert("⚠️ Share works only on Mobile. Please attach the downloaded file manually.");
+      }
+    });
+  </script>
+
+</body>
+</html>
